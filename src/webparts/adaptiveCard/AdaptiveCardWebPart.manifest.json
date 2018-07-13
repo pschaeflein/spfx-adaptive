@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "82e757fc-c147-4eef-90da-8ae23523048d",
+  "alias": "AdaptiveCardWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "preconfiguredEntries": [{
+    "groupId": "1edbd9a8-0bfb-4aa2-9afd-14b8c45dd489",
+    "group": { "default": "Discover" },
+    "title": { "default": "Adaptive Card Web Part" },
+    "description": { "default": "Display an adaptive card from a web service" },
+    "iconImageUrl": "https://adaptivecardsampleservice.azurewebsites.net/assets/Adaptive1.0.png",
+    "properties": {
+      "title": "Sample Card",
+      "displayModeDark":false
+    }
+  }]
+}
