@@ -7,9 +7,11 @@ import {
   PropertyPaneTextField,
   PropertyPaneToggle
 } from '@microsoft/sp-webpart-base';
+import { HttpClient } from '@microsoft/sp-http';
 
 import * as strings from 'AdaptiveCardWebPartStrings';
-import { AdaptiveCardWebPartComponent, IAdaptiveCardWebPartComponentProps } from './components/AdaptiveCardWebPartComponent';
+import { IAdaptiveCardWebPartComponentProps } from './components/IAdaptiveCardWebPartComponentProps';
+import { AdaptiveCardWebPartComponent } from './components/AdaptiveCardWebPartComponent';
 
 
 export interface IAdaptiveCardWebPartProps {
@@ -21,15 +23,16 @@ export interface IAdaptiveCardWebPartProps {
 export default class AdaptiveCardWebPart extends BaseClientSideWebPart<IAdaptiveCardWebPartProps> {
 
   public render(): void {
+    let ctx = this.context;
+    let props: IAdaptiveCardWebPartComponentProps = {
+      title: this.properties.title,
+      displayModeDark: this.properties.displayModeDark,
+      cardSourceUrl: this.properties.cardSourceUrl
+    };
 
-    const element: React.ReactElement<IAdaptiveCardWebPartProps> = React.createElement(
+    const element: React.ReactElement<IAdaptiveCardWebPartComponentProps> = React.createElement(
       AdaptiveCardWebPartComponent,
-      {
-        title: this.properties.title,
-        displayModeDark: this.properties.displayModeDark,
-        httpClient: this.context.httpClient,
-        cardSourceUrl: this.properties.cardSourceUrl
-      }
+      props
     );
 
     ReactDom.render(element, this.domElement);

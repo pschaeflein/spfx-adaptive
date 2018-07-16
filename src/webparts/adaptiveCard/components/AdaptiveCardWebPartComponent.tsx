@@ -1,19 +1,11 @@
 import * as React from 'react';
-import * as AdaptiveCards from 'adaptivecards';
-import { DisplayMode } from '@microsoft/sp-core-library';
-import { HttpClient, HttpClientConfiguration, HttpClientResponse } from '@microsoft/sp-http';
 
-import { ICardService, CardService } from '../CardService';
-import styles from './AdaptiveCard.module.scss';
+import { IAdaptiveCardWebPartComponentProps } from './IAdaptiveCardWebPartComponentProps';
 import { AdaptiveCard } from './AdaptiveCard';
+import styles from './AdaptiveCard.module.scss';
+import { ICardService, CardService } from '../CardService';
 import { AdaptiveCardSampleService } from '../AdaptiveCardSampleService';
 
-export interface IAdaptiveCardWebPartComponentProps {
-  title: string;
-  displayModeDark: boolean;
-  httpClient: HttpClient;
-  cardSourceUrl: string;
-}
 
 export interface IAdaptiveCardWebPartComponentState {
   cardData?: object;
@@ -26,9 +18,9 @@ export class AdaptiveCardWebPartComponent extends React.Component<IAdaptiveCardW
     super(props);
 
     if (props.cardSourceUrl) {
-      this.cardService = new CardService(props.httpClient);
+      this.cardService = new CardService();
     } else {
-      this.cardService = new AdaptiveCardSampleService(props.httpClient);
+      this.cardService = new AdaptiveCardSampleService();
     }
 
     this.state = {
@@ -44,7 +36,6 @@ export class AdaptiveCardWebPartComponent extends React.Component<IAdaptiveCardW
     if ( nextProps.cardSourceUrl !== this.props.cardSourceUrl){
       this.getData(nextProps.cardSourceUrl);
     }
-
   }
 
   private getData(dataUrl: string) {

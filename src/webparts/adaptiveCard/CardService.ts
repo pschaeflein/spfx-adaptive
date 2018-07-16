@@ -5,16 +5,11 @@ export interface ICardService {
 }
 
 export class CardService implements ICardService {
-  private httpClient: HttpClient;
-
-  constructor(httpClient: HttpClient) {
-    this.httpClient = httpClient;
-  }
 
   public async getData(endpoint: string): Promise<object> {
     return new Promise<Array<object>>((resolve, reject) => {
-      this.httpClient.get(endpoint, HttpClient.configurations.v1)
-        .then((response: HttpClientResponse) => {
+      fetch(endpoint)
+        .then((response: Response) => {
           if (response.ok) {
             response.json()
               .then((data: any) => {

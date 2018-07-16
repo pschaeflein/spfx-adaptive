@@ -3,9 +3,8 @@
   "solution": {
     "name": "sc-spfx-adaptive",
     "id": "9c0f8dba-2ee7-48e2-b3d9-fefab0dabeb7",
-    "version": "1.0.0.0",
-    "includeClientSideAssets": false,
-    "skipFeatureDeployment": true
+    "version": "1.0.0.2",
+    "includeClientSideAssets": true,
   },
   "paths": {
     "zippedPackage": "solution/sc-spfx-adaptive.sppkg"

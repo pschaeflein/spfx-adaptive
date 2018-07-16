@@ -18,7 +18,8 @@ export class AdaptiveCard extends React.Component<IAdaptiveCardProps> {
 
     let containerStyle: string = (this.props.displayModeDark) ? styles.containerDark : styles.containerLight;
     let rowStyle: string = (this.props.displayModeDark) ? styles.rowDark : styles.rowLight;
-    let cardStyleSet: AdaptiveCards.ContainerStyleSet = null;
+    //let cardStyleSet: AdaptiveCards.ContainerStyleSet = null;
+    let cardStyleSet = null;
 
     var theme = (window as any).__themeState__.theme || ThemeExample;
     cardStyleSet = (this.props.displayModeDark) ? this.createDarkStyleSet(theme) : this.createLightStyleSet(theme);
@@ -44,8 +45,8 @@ export class AdaptiveCard extends React.Component<IAdaptiveCardProps> {
     );
   }
 
-  private createDarkStyleSet(theme: any): AdaptiveCards.ContainerStyleSet {
-    var s: AdaptiveCards.ContainerStyleSet = new AdaptiveCards.ContainerStyleSet({
+  private createDarkStyleSet(theme: any): AdaptiveCards.ContainerStyleDefinition {
+    var s = new AdaptiveCards.ContainerStyleDefinition({
       default: {
         backgroundColor: theme.themePrimary,
         foregroundColors: {
@@ -83,8 +84,8 @@ export class AdaptiveCard extends React.Component<IAdaptiveCardProps> {
     return s;
   }
 
-  private createLightStyleSet(theme: any): AdaptiveCards.ContainerStyleSet {
-    var s: AdaptiveCards.ContainerStyleSet = new AdaptiveCards.ContainerStyleSet({
+  private createLightStyleSet(theme: any): AdaptiveCards.ContainerStyleDefinition {
+    var s = new AdaptiveCards.ContainerStyleDefinition({
       default: {
         foregroundColors: {
           default: {
